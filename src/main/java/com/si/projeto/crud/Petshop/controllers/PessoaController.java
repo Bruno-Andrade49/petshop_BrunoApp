@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -11,25 +12,30 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.si.projeto.crud.Petshop.entities.Pessoa;
 import com.si.projeto.crud.Petshop.repositories.PessoaRepository;
 
-@CrossOrigin(origins = "http://127.0.0.1:5500")
+//@CrossOrigin(origins = "http://127.0.0.1:5500")
 @RestController
+@RequestMapping(path = "/pessoas")
 public class PessoaController {
 	
 	@Autowired
 	private PessoaRepository pessoaRepository; 
 	
-	@GetMapping(path = "/pessoas")
+	//@CrossOrigin(origins = "http://127.0.0.1:5500")
+	@GetMapping
 	@ResponseStatus(value = HttpStatus.FOUND)
 	public List<Pessoa> getPessoas() {
 		return pessoaRepository.findAll();
 	}
 	
+	//@CrossOrigin(origins = "http://127.0.0.1:5500")
+	@Transactional
 	@PostMapping(path = "/cadastro")
 	@ResponseStatus(value = HttpStatus.CREATED)
 	public Pessoa criarPessoa(@RequestBody Pessoa pessoa) {
@@ -37,7 +43,8 @@ public class PessoaController {
 	}
 
 	
-	@DeleteMapping(path = "/cadastro/{idPessoa}")
+	//@CrossOrigin(origins = "http://127.0.0.1:5500")
+	@DeleteMapping(path = "/{idPessoa}")
 	@ResponseStatus(value = HttpStatus.OK)
 	public void deletarPessoa(@PathVariable Long idPessoa) {
 		Pessoa pessoa = pessoaRepository.findById(idPessoa).get();
@@ -45,7 +52,8 @@ public class PessoaController {
 	}
 
 	
-	@PutMapping(path = "/cadastro/{idPessoa}/edit")
+	//@CrossOrigin(origins = "http://127.0.0.1:5500")
+	@PutMapping(path = "/{idPessoa}")
 	@ResponseStatus(value = HttpStatus.OK)
 	public void editarPessoa(@PathVariable Long idPessoa, @RequestBody Pessoa pessoa) {
 		Pessoa pessoa02 = pessoaRepository.findById(idPessoa).get();
