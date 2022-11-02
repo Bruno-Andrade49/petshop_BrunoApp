@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.access.prepost.PostAuthorize;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -35,7 +36,8 @@ public class PessoaController {
 	}
 	
 	//@CrossOrigin(origins = "http://127.0.0.1:5500")
-	@PostMapping(path = "/cadastro")
+
+	@PostMapping(path = "/criar")
 	@ResponseStatus(value = HttpStatus.CREATED)
 	public Pessoa criarPessoa(@RequestBody Pessoa pessoa) {
 		return pessoaRepository.save(pessoa);
