@@ -35,7 +35,6 @@ public class PessoaController {
 	}
 	
 	//@CrossOrigin(origins = "http://127.0.0.1:5500")
-	@Transactional
 	@PostMapping(path = "/cadastro")
 	@ResponseStatus(value = HttpStatus.CREATED)
 	public Pessoa criarPessoa(@RequestBody Pessoa pessoa) {
