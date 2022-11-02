@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -37,8 +38,8 @@ public class PessoaController {
 	
 	//@CrossOrigin(origins = "http://127.0.0.1:5500")
 
-	@PostMapping(path = "/criar")
 	@ResponseStatus(value = HttpStatus.CREATED)
+	@RequestMapping(method = RequestMethod.POST)
 	public Pessoa criarPessoa(@RequestBody Pessoa pessoa) {
 		return pessoaRepository.save(pessoa);
 	}
